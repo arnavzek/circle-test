@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <style>
+      body {
+        font-size: 6px;
+        line-height: 0.6;
+      }
+    </style>
+  </head>
+  <body>
+    <script>
+      let martix = [];
+      let height = 500;
+      let width = 500;
+      let radius = 100;
+      function populate() {
+        for (let y = 0; y <= height; y++) {
+          martix[y] = [];
+
+          for (let x = 0; x <= width; x++) {
+            martix[y].push("_");
+          }
+        }
+      }
+
+      populate();
+
+      function thetaToRadians(theta) {
+        return theta * (Math.PI / 180);
+      }
+
+      for (let theta = 0; theta <= 360; theta++) {
+        let x = Math.sin(thetaToRadians(theta)) * radius;
+        let y = Math.cos(thetaToRadians(theta)) * radius;
+
+        x = Math.round(x);
+        y = Math.round(y);
+        x = x + radius;
+        y = y + radius;
+        console.log(y, x);
+        martix[y][x] = "▄";
+      }
+
+      let content = "";
+
+      for (let y = 0; y <= height; y++) {
+        content += "<br>";
+        for (let x = 0; x <= width; x++) {
+          content += martix[y][x];
+        }
+      }
+
+      document.body.innerHTML = content;
+    </script>
+  </body>
+</html>
